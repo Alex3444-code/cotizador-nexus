@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador Nexus Core</title>
+    <style>
+        body { background-color: #050505; color: #e0e0e0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: #0f0f0f; border: 1px solid #1a1a1a; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px rgba(0,229,255,0.1); width: 100%; max-width: 450px; }
+        h1 { color: #00e5ff; font-size: 1.5rem; text-align: center; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; }
+        .section-title { color: #00ff88; font-size: 0.9rem; margin-top: 20px; border-bottom: 1px dashed #333; padding-bottom: 5px; }
+        .option { display: flex; align-items: center; justify-content: space-between; margin: 15px 0; padding: 10px; border-radius: 8px; transition: background 0.3s; }
+        .option:hover { background: #161616; }
+        label { cursor: pointer; display: flex; align-items: center; gap: 10px; flex: 1; }
+        input[type="checkbox"] { accent-color: #00e5ff; transform: scale(1.2); }
+        .price-tag { color: #888; font-weight: bold; }
+        .total-box { margin-top: 30px; padding-top: 20px; border-top: 2px solid #00e5ff; text-align: right; }
+        #total-display { font-size: 2rem; color: #fff; font-weight: bold; }
+        .btn-send { width: 100%; background: #00e5ff; color: #000; border: none; padding: 15px; border-radius: 8px; font-weight: bold; margin-top: 20px; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        .btn-send:hover { background: #00b8cc; box-shadow: 0 0 15px rgba(0,229,255,0.4); }
+        input[type="text"] { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Nexus Core</h1>
+    <form id="form-cotizador" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
+        
+        <div class="section-title">DESARROLLO WEB (Pago único)</div>
+        <div class="option">
+            <label><input type="checkbox" name="Web_Basica" value="600000" class="service"> Web Básica</label>
+            <span class="price-tag">$600k</span>
+        </div>
+        <div class="option">
+            <label><input type="checkbox" name="Web_Empresarial" value="1500000" class="service"> Web Empresarial</label>
+            <span class="price-tag">$1.5M</span>
+        </div>
+
+        <div class="section-title">GESTIÓN MENSUAL (Redes + Web)</div>
+        <div class="option">
+            <label><input type="checkbox" name="Redes_Basico" value="450000" class="service"> Gestión Básica</label>
+            <span class="price-tag">$450k</span>
+        </div>
+        <div class="option">
+            <label><input type="checkbox" name="Redes_Profesional" value="850000" class="service"> Gestión Profesional</label>
+            <span class="price-tag">$850k</span>
+        </div>
+        <div class="option">
+            <label><input type="checkbox" name="Redes_Elite" value="1800000" class="service"> Gestión Elite (Diaria)</label>
+            <span class="price-tag">$1.8M</span>
+        </div>
+
+        <div class="total-box">
+            <span style="color: #888;">INVERSIÓN ESTIMADA:</span><br>
+            <span id="total-display">$0</span>
+        </div>
+
+        <input type="hidden" name="_total_calculado" id="input-total">
+        <br>
+        <input type="text" name="cliente" placeholder="Nombre del cliente o empresa" required>
+        <button type="submit" class="btn-send">Enviar Solicitud</button>
+    </form>
+</div>
+
+<script>
+    const checkboxes = document.querySelectorAll('.service');
+    const display = document.getElementById('total-display');
+    const inputTotal = document.getElementById('input-total');
+
+    checkboxes.forEach(item => {
+        item.addEventListener('change', () => {
+            let total = 0;
+            checkboxes.forEach(c => {
+                if(c.checked) total += parseInt(c.value);
+            });
+            display.innerText = '$' + total.toLocaleString('es-CO');
+            inputTotal.value = '$' + total.toLocaleString('es-CO');
+        });
+    });
+</script>
+
+</body>
+</html>
