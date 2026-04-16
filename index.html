@@ -19,13 +19,10 @@
             overflow-x: hidden;
         }
 
-        /* Contenedor de la Red Neuronal */
         #particles-js {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
             z-index: 1;
         }
 
@@ -34,37 +31,44 @@
             z-index: 2;
             display: flex;
             justify-content: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
         }
 
-        .wrapper { width: 100%; max-width: 650px; background: rgba(0,0,0,0.7); padding: 40px; border-radius: 20px; backdrop-filter: blur(5px); border: 1px solid #111; }
+        .wrapper { 
+            width: 100%; max-width: 600px; 
+            background: rgba(0,0,0,0.8); 
+            padding: 40px; 
+            border-radius: 15px; 
+            backdrop-filter: blur(8px); 
+            border: 1px solid #111; 
+        }
 
-        h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 5px; letter-spacing: -1.5px; }
-        .tagline { color: var(--nexus-blue); text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; font-weight: 700; margin-bottom: 40px; display: block; }
+        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 5px; letter-spacing: -1.5px; text-align: center; }
+        .tagline { color: var(--nexus-blue); text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; font-weight: 700; margin-bottom: 40px; display: block; text-align: center; }
 
-        .section-header { font-size: 1.3rem; font-weight: 700; margin: 40px 0 15px 0; border-bottom: 1px solid #222; padding-bottom: 10px; color: var(--nexus-blue); }
+        .section-header { font-size: 1.1rem; font-weight: 700; margin: 40px 0 15px 0; border-bottom: 1px solid #222; padding-bottom: 8px; color: var(--nexus-blue); text-transform: uppercase; letter-spacing: 1px; }
 
-        .service-item { display: flex; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid #111; cursor: pointer; }
-        .service-item:hover { background: rgba(255,255,255,0.03); }
+        .service-item { display: flex; align-items: flex-start; padding: 15px 0; border-bottom: 1px solid #111; transition: 0.2s; }
+        .service-item:hover { background: rgba(255,255,255,0.02); }
 
         input[type="checkbox"] {
-            appearance: none; width: 22px; height: 22px; border: 1px solid #333; border-radius: 4px;
-            margin-right: 20px; cursor: pointer; background: transparent; position: relative; flex-shrink: 0; margin-top: 5px;
+            appearance: none; width: 20px; height: 20px; border: 1px solid #333; border-radius: 4px;
+            margin-right: 15px; cursor: pointer; background: transparent; position: relative; flex-shrink: 0; margin-top: 4px;
         }
 
         input[type="checkbox"]:checked { background-color: var(--nexus-blue); border-color: var(--nexus-blue); }
-        input[type="checkbox"]:checked::after { content: "✓"; color: white; position: absolute; left: 5px; top: -2px; font-size: 16px; }
+        input[type="checkbox"]:checked::after { content: "✓"; color: white; position: absolute; left: 4px; top: -2px; font-size: 14px; }
 
         .content { flex: 1; }
-        .service-name { font-size: 1.05rem; font-weight: 600; display: block; }
-        .service-desc { color: #888; font-size: 0.85rem; margin-top: 5px; line-height: 1.5; }
-        .service-price { font-weight: 700; font-size: 1rem; margin-left: 20px; }
+        .service-name { font-size: 1rem; font-weight: 600; display: block; }
+        .service-desc { color: #888; font-size: 0.85rem; margin-top: 4px; line-height: 1.4; white-space: pre-line; }
+        .service-price { font-weight: 700; font-size: 0.95rem; margin-left: 15px; color: var(--nexus-blue); }
 
-        .footer-card { margin-top: 50px; text-align: center; }
-        #total-amount { font-size: 3rem; font-weight: 700; margin: 10px 0; display: block; color: var(--nexus-blue); }
+        .footer-card { margin-top: 40px; text-align: center; border-top: 1px solid #222; padding-top: 30px; }
+        #total-amount { font-size: 3.2rem; font-weight: 700; margin: 10px 0; display: block; color: #fff; }
 
-        .client-input { width: 100%; padding: 18px; background: #0a0a0a; border: 1px solid #222; color: white; border-radius: 8px; margin-bottom: 15px; font-size: 1rem; box-sizing: border-box; }
-        .btn-main { width: 100%; background: var(--nexus-blue); color: white; border: none; padding: 20px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; }
+        .client-input { width: 100%; padding: 15px; background: #0a0a0a; border: 1px solid #222; color: white; border-radius: 8px; margin-bottom: 15px; font-size: 1rem; box-sizing: border-box; text-align: center; }
+        .btn-main { width: 100%; background: var(--nexus-blue); color: white; border: none; padding: 18px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .btn-main:hover { background: #0066cc; transform: translateY(-2px); }
     </style>
 </head>
@@ -75,41 +79,64 @@
 <div class="main-content">
     <div class="wrapper">
         <span class="tagline">Arquitectura Digital Administrada</span>
-        <h1>Cotizador Nexus Core</h1>
+        <h1>Cotizador Nexus</h1>
         
         <form id="form-nexus">
             <div class="section-header">Desarrollo Web</div>
             
             <div class="service-item">
-                <input type="checkbox" class="service" name="servicios" value="Web_Basica" data-price="600000">
+                <input type="checkbox" class="service" name="servicios" value="Web_Basica" data-price="750000">
                 <div class="content">
                     <span class="service-name">Página Web Básica</span>
-                    <span class="service-desc">Landing page optimizada | 5MB Storage.</span>
+                    <span class="service-desc">Landing Page
+                    Sección servicios - testimonios
+                    5 MB Almacenamiento</span>
                 </div>
-                <span class="service-price">$600k</span>
+                <span class="service-price">$750k</span>
             </div>
 
             <div class="service-item">
-                <input type="checkbox" class="service" name="servicios" value="Web_Empresarial" data-price="1500000">
+                <input type="checkbox" class="service" name="servicios" value="Web_Empresarial" data-price="1650000">
                 <div class="content">
                     <span class="service-name">Web Empresarial</span>
-                    <span class="service-desc">Animaciones PRO | Formularios | 15MB Storage.</span>
+                    <span class="service-desc">20 Redirecciones
+                    Animaciones premium
+                    Formularios de contacto
+                    15 MB Almacenamiento</span>
                 </div>
-                <span class="service-price">$1.5M</span>
+                <span class="service-price">$1.65M</span>
             </div>
 
             <div class="section-header">Social Media</div>
 
             <div class="service-item">
-                <input type="checkbox" class="service" name="servicios" value="Plan_Alpha" data-price="600000">
-                <div class="content"><span class="service-name">Plan Alpha</span><span class="service-desc">10 Videos + 20 Fotos.</span></div>
-                <span class="service-price">$600k</span>
+                <input type="checkbox" class="service" name="servicios" value="Plan_Alpha" data-price="750000">
+                <div class="content">
+                    <span class="service-name">Plan Alpha (Mensual)</span>
+                    <span class="service-desc">10 Videos
+                    20 Fotos</span>
+                </div>
+                <span class="service-price">$750k</span>
             </div>
 
             <div class="service-item">
-                <input type="checkbox" class="service" name="servicios" value="Plan_Gamma" data-price="700000">
-                <div class="content"><span class="service-name">Plan Gamma</span><span class="service-desc">20 Videos + 10 Fotos.</span></div>
-                <span class="service-price">$700k</span>
+                <input type="checkbox" class="service" name="servicios" value="Plan_Gamma" data-price="850000">
+                <div class="content">
+                    <span class="service-name">Plan Gamma (Mensual)</span>
+                    <span class="service-desc">20 Videos
+                    10 Fotos</span>
+                </div>
+                <span class="service-price">$850k</span>
+            </div>
+
+            <div class="section-header">Publicidad Digital</div>
+            <div class="service-item">
+                <input type="checkbox" class="service" name="servicios" value="Pauta_Publicitaria" data-price="1500000">
+                <div class="info">
+                    <span class="service-name">Inversión Publicitaria (Pauta)</span>
+                    <span class="service-desc">Gestión y optimización de anuncios</span>
+                </div>
+                <span class="service-price">$1.5M</span>
             </div>
 
             <div class="footer-card">
@@ -118,7 +145,7 @@
                 
                 <input type="text" name="cliente" class="client-input" placeholder="Nombre del proyecto" required>
                 <input type="hidden" name="total_calculado" id="input-total">
-                <button type="submit" id="btn-submit" class="btn-main">Enviar a Base de Datos</button>
+                <button type="submit" id="btn-submit" class="btn-main">Sincronizar Cotización</button>
             </div>
         </form>
     </div>
@@ -126,24 +153,20 @@
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-    /* Configuración de la Red Neuronal */
     particlesJS("particles-js", {
         "particles": {
-            "number": { "value": 80 },
+            "number": { "value": 60 },
             "color": { "value": "#0084ff" },
             "shape": { "type": "circle" },
-            "opacity": { "value": 0.5 },
-            "size": { "value": 3 },
-            "line_linked": { "enable": true, "distance": 150, "color": "#0084ff", "opacity": 0.4, "width": 1 },
-            "move": { "enable": true, "speed": 2 }
+            "opacity": { "value": 0.4 },
+            "size": { "value": 2 },
+            "line_linked": { "enable": true, "distance": 150, "color": "#0084ff", "opacity": 0.3, "width": 1 },
+            "move": { "enable": true, "speed": 1.5 }
         },
-        "interactivity": {
-            "events": { "onhover": { "enable": true, "mode": "grab" } }
-        },
+        "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } },
         "retina_detect": true
     });
 
-    /* Lógica del Cotizador */
     const checkboxes = document.querySelectorAll('.service');
     const display = document.getElementById('total-amount');
     const inputTotal = document.getElementById('input-total');
@@ -167,9 +190,13 @@
             body: new FormData(form),
         }).then(() => {
             btn.innerText = "¡Sincronizado!";
+            btn.style.background = "#2ecc71";
             form.reset();
             display.innerText = "$0";
-            setTimeout(() => { btn.innerText = "Enviar a Base de Datos"; }, 3000);
+            setTimeout(() => { 
+                btn.innerText = "Sincronizar Cotización"; 
+                btn.style.background = "#0084ff";
+            }, 3000);
         });
     });
 </script>
