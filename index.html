@@ -3,205 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Core | Cotizador de Servicios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Cotizador | Nexus Core</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --nexus-blue: #3a86ff; /* El azul de acento de tus títulos */
+            --nexus-blue: #0084ff; 
             --bg-black: #000000;
-            --card-bg: #0a0a0a; /* Fondo sutilmente gris de tus tarjetas */
-            --border-color: #1a1a1a; /* El borde fino que usas en los bloques */
-            --text-main: #ffffff;
-            --text-secondary: #999999;
         }
 
         body { 
             background-color: var(--bg-black); 
-            color: var(--text-main); 
+            color: #fff; 
             font-family: 'Inter', sans-serif;
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
             margin: 0;
-            padding: 20px;
+            overflow-x: hidden;
         }
 
-        .container { 
-            background: var(--card-bg); 
-            border: 1px solid var(--border-color); 
-            padding: 45px; 
-            border-radius: 12px; 
-            width: 100%; 
-            max-width: 550px;
-        }
-
-        h1 { 
-            font-size: 2rem; 
-            margin-bottom: 10px; 
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        h1 span { color: var(--nexus-blue); }
-
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 40px;
-            line-height: 1.5;
-        }
-
-        .section-title { 
-            color: var(--nexus-blue); 
-            font-size: 0.75rem; 
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .option { 
-            display: flex; 
-            align-items: flex-start; 
-            padding: 18px; 
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .option:hover {
-            border-color: #333;
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        input[type="checkbox"] { 
-            margin-right: 15px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--nexus-blue);
-            cursor: pointer;
-            margin-top: 3px;
-        }
-
-        .info { flex: 1; }
-        .label-text { display: block; font-size: 0.95rem; font-weight: 400; margin-bottom: 4px; }
-        .desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; }
-        .price { font-weight: 600; color: var(--text-main); font-size: 0.9rem; margin-left: 15px; white-space: nowrap; }
-
-        .total-container { 
-            margin-top: 40px; 
-            padding: 25px; 
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .total-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
-        #total-display { font-size: 2.5rem; font-weight: 600; display: block; margin-top: 10px; }
-
-        .input-client {
+        /* Contenedor de la Red Neuronal */
+        #particles-js {
+            position: fixed;
             width: 100%;
-            padding: 15px;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: white;
-            border-radius: 8px;
-            margin-top: 25px;
-            box-sizing: border-box;
-            font-family: inherit;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
 
-        .btn-submit { 
-            width: 100%; 
-            background: var(--nexus-blue); 
-            color: white; 
-            border: none; 
-            padding: 18px; 
-            border-radius: 8px; 
-            font-weight: 600; 
-            font-size: 1rem;
-            margin-top: 20px;
-            cursor: pointer;
-            transition: opacity 0.2s;
+        .main-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            padding: 80px 20px;
         }
 
-        .btn-submit:hover { opacity: 0.9; }
+        .wrapper { width: 100%; max-width: 650px; background: rgba(0,0,0,0.7); padding: 40px; border-radius: 20px; backdrop-filter: blur(5px); border: 1px solid #111; }
+
+        h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 5px; letter-spacing: -1.5px; }
+        .tagline { color: var(--nexus-blue); text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; font-weight: 700; margin-bottom: 40px; display: block; }
+
+        .section-header { font-size: 1.3rem; font-weight: 700; margin: 40px 0 15px 0; border-bottom: 1px solid #222; padding-bottom: 10px; color: var(--nexus-blue); }
+
+        .service-item { display: flex; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid #111; cursor: pointer; }
+        .service-item:hover { background: rgba(255,255,255,0.03); }
+
+        input[type="checkbox"] {
+            appearance: none; width: 22px; height: 22px; border: 1px solid #333; border-radius: 4px;
+            margin-right: 20px; cursor: pointer; background: transparent; position: relative; flex-shrink: 0; margin-top: 5px;
+        }
+
+        input[type="checkbox"]:checked { background-color: var(--nexus-blue); border-color: var(--nexus-blue); }
+        input[type="checkbox"]:checked::after { content: "✓"; color: white; position: absolute; left: 5px; top: -2px; font-size: 16px; }
+
+        .content { flex: 1; }
+        .service-name { font-size: 1.05rem; font-weight: 600; display: block; }
+        .service-desc { color: #888; font-size: 0.85rem; margin-top: 5px; line-height: 1.5; }
+        .service-price { font-weight: 700; font-size: 1rem; margin-left: 20px; }
+
+        .footer-card { margin-top: 50px; text-align: center; }
+        #total-amount { font-size: 3rem; font-weight: 700; margin: 10px 0; display: block; color: var(--nexus-blue); }
+
+        .client-input { width: 100%; padding: 18px; background: #0a0a0a; border: 1px solid #222; color: white; border-radius: 8px; margin-bottom: 15px; font-size: 1rem; box-sizing: border-box; }
+        .btn-main { width: 100%; background: var(--nexus-blue); color: white; border: none; padding: 20px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; }
+        .btn-main:hover { background: #0066cc; transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Cotizador <span>Nexus Core</span></h1>
-    <p class="subtitle">Selecciona los servicios de arquitectura digital que requiere tu proyecto para generar una inversión estimada.</p>
-    
-    <form id="form-cotizador">
-        <div class="section-title">Opciones de Implementación</div>
+<div id="particles-js"></div>
+
+<div class="main-content">
+    <div class="wrapper">
+        <span class="tagline">Arquitectura Digital Administrada</span>
+        <h1>Cotizador Nexus Core</h1>
         
-        <div class="option">
-            <input type="checkbox" name="servicios" value="Web_Basica" data-price="600000" class="service">
-            <div class="info">
-                <span class="label-text">Página Web Básica</span>
-                <span class="desc">Landing page con secciones de servicios y testimonios. 5MB Storage.</span>
+        <form id="form-nexus">
+            <div class="section-header">Desarrollo Web</div>
+            
+            <div class="service-item">
+                <input type="checkbox" class="service" name="servicios" value="Web_Basica" data-price="600000">
+                <div class="content">
+                    <span class="service-name">Página Web Básica</span>
+                    <span class="service-desc">Landing page optimizada | 5MB Storage.</span>
+                </div>
+                <span class="service-price">$600k</span>
             </div>
-            <span class="price">$600K</span>
-        </div>
 
-        <div class="option">
-            <input type="checkbox" name="servicios" value="Web_Empresarial" data-price="1500000" class="service">
-            <div class="info">
-                <span class="label-text">Web Empresarial</span>
-                <span class="desc">20 redirecciones, animaciones PRO y formularios. 15MB Storage.</span>
+            <div class="service-item">
+                <input type="checkbox" class="service" name="servicios" value="Web_Empresarial" data-price="1500000">
+                <div class="content">
+                    <span class="service-name">Web Empresarial</span>
+                    <span class="service-desc">Animaciones PRO | Formularios | 15MB Storage.</span>
+                </div>
+                <span class="service-price">$1.5M</span>
             </div>
-            <span class="price">$1.5M</span>
-        </div>
 
-        <div class="section-title">Gestión de Redes Sociales</div>
-        
-        <div class="option">
-            <input type="checkbox" name="servicios" value="Plan_Alpha" data-price="600000" class="service">
-            <div class="info">
-                <span class="label-text">Plan Alpha</span>
-                <span class="desc">Gestión de 10 videos y 20 fotos mensuales.</span>
+            <div class="section-header">Social Media</div>
+
+            <div class="service-item">
+                <input type="checkbox" class="service" name="servicios" value="Plan_Alpha" data-price="600000">
+                <div class="content"><span class="service-name">Plan Alpha</span><span class="service-desc">10 Videos + 20 Fotos.</span></div>
+                <span class="service-price">$600k</span>
             </div>
-            <span class="price">$600K</span>
-        </div>
 
-        <div class="option">
-            <input type="checkbox" name="servicios" value="Plan_Gamma" data-price="700000" class="service">
-            <div class="info">
-                <span class="label-text">Plan Gamma</span>
-                <span class="desc">Gestión de 20 videos y 10 fotos mensuales.</span>
+            <div class="service-item">
+                <input type="checkbox" class="service" name="servicios" value="Plan_Gamma" data-price="700000">
+                <div class="content"><span class="service-name">Plan Gamma</span><span class="service-desc">20 Videos + 10 Fotos.</span></div>
+                <span class="service-price">$700k</span>
             </div>
-            <span class="price">$700K</span>
-        </div>
 
-        <div class="total-container">
-            <span class="total-label">Inversión Estimada</span>
-            <span id="total-display">$0</span>
-        </div>
-
-        <input type="hidden" name="total_calculado" id="input-total">
-        <input type="text" name="cliente" class="input-client" placeholder="Nombre del Cliente o Empresa" required>
-        <button type="submit" id="submit-btn" class="btn-submit">Enviar a Revisión</button>
-    </form>
+            <div class="footer-card">
+                <span style="color: #666; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px;">Presupuesto Estimado</span>
+                <span id="total-amount">$0</span>
+                
+                <input type="text" name="cliente" class="client-input" placeholder="Nombre del proyecto" required>
+                <input type="hidden" name="total_calculado" id="input-total">
+                <button type="submit" id="btn-submit" class="btn-main">Enviar a Base de Datos</button>
+            </div>
+        </form>
+    </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
+    /* Configuración de la Red Neuronal */
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 80 },
+            "color": { "value": "#0084ff" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.5 },
+            "size": { "value": 3 },
+            "line_linked": { "enable": true, "distance": 150, "color": "#0084ff", "opacity": 0.4, "width": 1 },
+            "move": { "enable": true, "speed": 2 }
+        },
+        "interactivity": {
+            "events": { "onhover": { "enable": true, "mode": "grab" } }
+        },
+        "retina_detect": true
+    });
+
+    /* Lógica del Cotizador */
     const checkboxes = document.querySelectorAll('.service');
-    const display = document.getElementById('total-display');
+    const display = document.getElementById('total-amount');
     const inputTotal = document.getElementById('input-total');
-    const form = document.getElementById('form-cotizador');
-    const submitBtn = document.getElementById('submit-btn');
+    const form = document.getElementById('form-nexus');
 
     checkboxes.forEach(item => {
         item.addEventListener('change', () => {
             let total = 0;
-            checkboxes.forEach(c => {
-                if(c.checked) total += parseInt(c.getAttribute('data-price'));
-            });
+            checkboxes.forEach(c => { if(c.checked) total += parseInt(c.getAttribute('data-price')); });
             display.innerText = '$' + total.toLocaleString('es-CO');
             inputTotal.value = '$' + total.toLocaleString('es-CO');
         });
@@ -209,22 +160,16 @@
 
     form.addEventListener("submit", e => {
         e.preventDefault();
-        submitBtn.innerText = "Procesando...";
-        submitBtn.disabled = true;
-
+        const btn = document.getElementById('btn-submit');
+        btn.innerText = "Sincronizando...";
         fetch("https://sheetdb.io/api/v1/wui6tspo2lgsy", {
             method : "POST",
             body: new FormData(form),
-        }).then(res => res.json()).then(() => {
-            submitBtn.innerText = "¡Solicitud Enviada!";
-            submitBtn.style.background = "#2ecc71";
+        }).then(() => {
+            btn.innerText = "¡Sincronizado!";
             form.reset();
             display.innerText = "$0";
-            setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Enviar a Revisión";
-                submitBtn.style.background = "#3a86ff";
-            }, 3000);
+            setTimeout(() => { btn.innerText = "Enviar a Base de Datos"; }, 3000);
         });
     });
 </script>
