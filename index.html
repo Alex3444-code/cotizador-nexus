@@ -5,78 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizador | Nexus Core</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+       (function(){
+          emailjs.init("Ts21xAVzYjz4U4UyC"); // Tu Public Key
+       })();
+    </script>
+
     <style>
-        :root {
-            --nexus-blue: #0084ff; 
-            --bg-black: #000000;
-        }
-
-        body { 
-            background-color: var(--bg-black); 
-            color: #fff; 
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
-        }
-
-        #particles-js {
-            position: fixed;
-            width: 100%; height: 100%;
-            top: 0; left: 0;
-            z-index: 1;
-        }
-
-        .main-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            justify-content: center;
-            padding: 60px 20px;
-        }
-
-        .wrapper { 
-            width: 100%; max-width: 600px; 
-            background: rgba(0,0,0,0.85); 
-            padding: 40px; 
-            border-radius: 15px; 
-            backdrop-filter: blur(10px); 
-            border: 1px solid #111; 
-        }
-
+        :root { --nexus-blue: #0084ff; --bg-black: #000000; }
+        body { background-color: var(--bg-black); color: #fff; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
+        .main-content { position: relative; z-index: 2; display: flex; justify-content: center; padding: 60px 20px; }
+        .wrapper { width: 100%; max-width: 600px; background: rgba(0,0,0,0.85); padding: 40px; border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid #111; }
         h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 5px; letter-spacing: -1.5px; text-align: center; }
         .tagline { color: var(--nexus-blue); text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; font-weight: 700; margin-bottom: 40px; display: block; text-align: center; }
-
         .section-header { font-size: 1.1rem; font-weight: 700; margin: 40px 0 15px 0; border-bottom: 1px solid #222; padding-bottom: 8px; color: var(--nexus-blue); text-transform: uppercase; letter-spacing: 1px; }
-
-        .info-box {
-            background: rgba(0, 132, 255, 0.05);
-            border-left: 3px solid var(--nexus-blue);
-            padding: 15px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-            color: #ccc;
-            line-height: 1.5;
-        }
-
+        .info-box { background: rgba(0, 132, 255, 0.05); border-left: 3px solid var(--nexus-blue); padding: 15px; margin-bottom: 20px; font-size: 0.85rem; color: #ccc; line-height: 1.5; }
         .service-item { display: flex; align-items: flex-start; padding: 15px 0; border-bottom: 1px solid #111; transition: 0.2s; }
-        .service-item:hover { background: rgba(255,255,255,0.02); }
-
-        input[type="checkbox"] {
-            appearance: none; width: 20px; height: 20px; border: 1px solid #333; border-radius: 4px;
-            margin-right: 15px; cursor: pointer; background: transparent; position: relative; flex-shrink: 0; margin-top: 4px;
-        }
-
+        input[type="checkbox"] { appearance: none; width: 20px; height: 20px; border: 1px solid #333; border-radius: 4px; margin-right: 15px; cursor: pointer; background: transparent; position: relative; flex-shrink: 0; margin-top: 4px; }
         input[type="checkbox"]:checked { background-color: var(--nexus-blue); border-color: var(--nexus-blue); }
         input[type="checkbox"]:checked::after { content: "✓"; color: white; position: absolute; left: 4px; top: -2px; font-size: 14px; }
-
         .content { flex: 1; }
         .service-name { font-size: 1rem; font-weight: 600; display: block; }
         .service-desc { color: #888; font-size: 0.85rem; margin-top: 4px; line-height: 1.4; white-space: pre-line; }
         .service-price { font-weight: 700; font-size: 0.95rem; margin-left: 15px; color: var(--nexus-blue); }
-
         .footer-card { margin-top: 40px; text-align: center; border-top: 1px solid #222; padding-top: 30px; }
         #total-amount { font-size: 3.2rem; font-weight: 700; margin: 10px 0; display: block; color: #fff; }
-
         .client-input { width: 100%; padding: 15px; background: #0a0a0a; border: 1px solid #222; color: white; border-radius: 8px; margin-bottom: 15px; font-size: 1rem; box-sizing: border-box; text-align: center; }
         .btn-main { width: 100%; background: var(--nexus-blue); color: white; border: none; padding: 18px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .btn-main:hover { background: #0066cc; transform: translateY(-2px); }
@@ -93,18 +49,15 @@
         
         <form id="form-nexus">
             <div class="section-header">Desarrollo Web</div>
-            
             <div class="info-box">
-                <strong>Seguridad y Estabilidad:</strong> Las plataformas digitales requieren mantenimiento constante para actualizaciones de seguridad, parches de versión y optimización de base de datos.
+                <strong>Seguridad y Estabilidad:</strong> Las plataformas digitales requieren mantenimiento constante para actualizaciones de seguridad y optimización.
             </div>
             
             <div class="service-item">
                 <input type="checkbox" class="service" name="servicios" value="Web_Basica" data-price="600000">
                 <div class="content">
                     <span class="service-name">Página Web Básica</span>
-                    <span class="service-desc">Landing Page
-                    Sección servicios - testimonios
-                    5 MB Almacenamiento</span>
+                    <span class="service-desc">Landing Page / Sección servicios / 5 MB Almacenamiento</span>
                 </div>
                 <span class="service-price">$600k</span>
             </div>
@@ -113,9 +66,7 @@
                 <input type="checkbox" class="service" name="servicios" value="Mantenimiento_Web" data-price="300000">
                 <div class="content">
                     <span class="service-name">Mantenimiento Mensual</span>
-                    <span class="service-desc">Seguridad y parches críticos
-                    Actualización de versiones
-                    Respaldo de datos (Backups)</span>
+                    <span class="service-desc">Seguridad, parches y Backups de datos</span>
                 </div>
                 <span class="service-price">$300k</span>
             </div>
@@ -124,8 +75,7 @@
                 <input type="checkbox" class="service" name="servicios" value="Web_Empresarial" data-price="1500000">
                 <div class="content">
                     <span class="service-name">Web Empresarial</span>
-                    <span class="service-desc">20 Redirecciones, Animaciones PRO
-                    Formularios y 15 MB Almacenamiento</span>
+                    <span class="service-desc">Animaciones PRO / Formularios / 15 MB Almacenamiento</span>
                 </div>
                 <span class="service-price">$1.5M</span>
             </div>
@@ -136,8 +86,7 @@
                 <input type="checkbox" class="service" name="servicios" value="Plan_Alpha" data-price="600000">
                 <div class="content">
                     <span class="service-name">Plan Alpha (Mensual)</span>
-                    <span class="service-desc">10 Videos
-                    20 Fotos</span>
+                    <span class="service-desc">10 Videos / 20 Fotos</span>
                 </div>
                 <span class="service-price">$600k</span>
             </div>
@@ -146,8 +95,7 @@
                 <input type="checkbox" class="service" name="servicios" value="Plan_Gamma" data-price="700000">
                 <div class="content">
                     <span class="service-name">Plan Gamma (Mensual)</span>
-                    <span class="service-desc">20 Videos
-                    10 Fotos</span>
+                    <span class="service-desc">20 Videos / 10 Fotos</span>
                 </div>
                 <span class="service-price">$700k</span>
             </div>
@@ -176,6 +124,7 @@
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
+    // Fondo de Red Neuronal
     particlesJS("particles-js", {
         "particles": {
             "number": { "value": 60 },
@@ -186,7 +135,6 @@
             "line_linked": { "enable": true, "distance": 150, "color": "#0084ff", "opacity": 0.3, "width": 1 },
             "move": { "enable": true, "speed": 1.5 }
         },
-        "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } },
         "retina_detect": true
     });
 
@@ -194,7 +142,9 @@
     const display = document.getElementById('total-amount');
     const inputTotal = document.getElementById('input-total');
     const form = document.getElementById('form-nexus');
+    const btn = document.getElementById('btn-submit');
 
+    // Cálculo en tiempo real
     checkboxes.forEach(item => {
         item.addEventListener('change', () => {
             let total = 0;
@@ -204,22 +154,40 @@
         });
     });
 
+    // Envío Dual: Sheets + EmailJS
     form.addEventListener("submit", e => {
         e.preventDefault();
-        const btn = document.getElementById('btn-submit');
         btn.innerText = "Sincronizando...";
+        btn.disabled = true;
+
+        const formData = new FormData(form);
+
+        // 1. Enviar a Google Sheets
         fetch("https://sheetdb.io/api/v1/wui6tspo2lgsy", {
             method : "POST",
-            body: new FormData(form),
+            body: formData,
         }).then(() => {
-            btn.innerText = "¡Sincronizado!";
-            btn.style.background = "#2ecc71";
-            form.reset();
-            display.innerText = "$0";
-            setTimeout(() => { 
-                btn.innerText = "Sincronizar Cotización"; 
-                btn.style.background = "#0084ff";
-            }, 3000);
+            
+            // 2. Enviar Notificación a tu Gmail vía EmailJS
+            const emailParams = {
+                cliente: document.querySelector('input[name="cliente"]').value,
+                total_calculado: display.innerText
+            };
+
+            emailjs.send('Service_n9r22hw', 'template_p0dicl5', emailParams)
+                .then(() => {
+                    console.log('Notificación enviada a Nexus');
+                    btn.innerText = "¡Sincronizado!";
+                    btn.style.background = "#2ecc71";
+                    
+                    setTimeout(() => { 
+                        form.reset();
+                        display.innerText = "$0";
+                        btn.innerText = "Sincronizar Cotización"; 
+                        btn.style.background = "#0084ff";
+                        btn.disabled = false;
+                    }, 3000);
+                });
         });
     });
 </script>
